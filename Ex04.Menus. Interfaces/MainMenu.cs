@@ -20,6 +20,18 @@ namespace Ex04.Menus.Interfaces
             ExitMenu();
         }
 
+        public override void SelectOption(byte io_OptionNumber)
+        {
+            if (io_OptionNumber == 0)
+            {
+                ExitMenu();
+            }
+            else
+            {
+                SelectItem(io_OptionNumber);
+            }
+        }
+
         public void ExitMenu()
         {
             Environment.Exit(0);

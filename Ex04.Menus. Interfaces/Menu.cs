@@ -19,9 +19,10 @@ namespace Ex04.Menus.Interfaces
         #endregion
 
         #region Properties
-        public List<MainMenu> Menus
+        public List<SubMenu> SubMenus
         {
             get => m_SubMenus;
+            set => m_SubMenus = value;
         }
 
         public Menu Current
@@ -45,6 +46,7 @@ namespace Ex04.Menus.Interfaces
         public List<MenuItem> MenuItems
         {
             get => m_MenuItems;
+            set => m_MenuItems = value;
         }
 
         public String MenuTitle
@@ -63,11 +65,30 @@ namespace Ex04.Menus.Interfaces
         #region Methods
         public abstract void GoToPreviousMenu();
 
-        public void ActOnSelectedItem()
+        public abstract void SelectOption(byte io_OptionNumber);
+
+        public void GoToNextMenu()
+        {
+            if (m_Next != null)
+            {
+                m_Current = m_Next;
+            }   
+            DisplayMenuOnConsole();
+        }
+ 
+        public void ActOnSelectedItem(MenuItem i_SelectedItem)
         {
 
+            if (i_SelectedItem.Next != null)
+            {
+                GoToNextMenu();
+            }
+            else
+            {
+                // Activate somthing
+            }
         }
-
+ 
         public MenuItem SelectItem(byte optionNumber)
         {
             return m_MenuItems[optionNumber - 1];
@@ -78,7 +99,14 @@ namespace Ex04.Menus.Interfaces
             m_SubMenus.Add(menu);
             menu.Previous = this;
             menu.Next = null;
-            this.Next = menu;
+            if (SubMenus[0] != null)
+            {
+                this.Next = m_SubMenus[0];
+            }
+            else
+            {
+                // Exption
+            }
         }
 
         public void RemoveMenu(SubMenu menu)
@@ -95,9 +123,8 @@ namespace Ex04.Menus.Interfaces
         }
 
         public void AddMenuItem(MenuItem item)
-        {
+        {          
             m_MenuItems.Add(item);
-            item.Previous = this.Previous.MenuItems[0].Current; 
         }
 
         public void RemoveMenuItem(MenuItem item)
@@ -108,7 +135,7 @@ namespace Ex04.Menus.Interfaces
         public override string ToString()
         {
             StringBuilder text = new StringBuilder();
-            text.Append(m_MenuTitle);
+            text.Append(MenuTitle);
             text.Append("");
             text.Append("-------------------------");
             text.Append("");
@@ -124,6 +151,7 @@ namespace Ex04.Menus.Interfaces
             {
                 text.Append("0 -> Back");
             }
+            text.Append("");
             return text.ToString();
         }
 

@@ -19,6 +19,16 @@ namespace Ex04.Menus.Interfaces
             {
                 this.Current = this.Previous;
             }
+            DisplayMenuOnConsole();
+        }
+
+        public override void SelectOption(byte io_OptionNumber)
+        {
+            if (io_OptionNumber == 0)
+            {
+                GoToPreviousMenu();
+            }
+            SelectItem(io_OptionNumber);
         }
     }
 }

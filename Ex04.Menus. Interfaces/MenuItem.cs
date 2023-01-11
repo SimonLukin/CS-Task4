@@ -10,6 +10,7 @@ namespace Ex04.Menus.Interfaces
     {
         private MenuItem m_Current;
         private MenuItem m_Previous;
+        private MenuItem m_Next;
         private string m_Name;
         private byte m_Index;
 
@@ -23,6 +24,12 @@ namespace Ex04.Menus.Interfaces
         {
             get => m_Previous;
             set => m_Previous = value;
+        }
+
+        public MenuItem Next
+        {
+            get => m_Next;
+            set => m_Next = value;
         }
 
         public string Name
