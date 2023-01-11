@@ -8,12 +8,15 @@ namespace Ex04.Menus.Interfaces
 {
     public class MenuItem
     {
+        #region Members
         private MenuItem m_Current;
-        private MenuItem m_Previous;
+        MenuItem m_Previous;
         private MenuItem m_Next;
         private string m_Name;
         private byte m_Index;
+        #endregion
 
+        #region Properties
         public MenuItem Current
         {
             get => m_Current;
@@ -43,10 +46,13 @@ namespace Ex04.Menus.Interfaces
             get => m_Index;
             set => m_Index = value;
         }
+        #endregion
 
+        #region Constructor
         public MenuItem()
         {
             this.Current = this;
         }
+        #endregion
     }
 }

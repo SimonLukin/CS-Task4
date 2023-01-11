@@ -63,25 +63,21 @@ namespace Ex04.Menus.Interfaces
         #endregion
 
         #region Methods
-        public abstract void GoToPreviousMenu();
 
-        public abstract void SelectOption(byte io_OptionNumber);
+        public abstract byte SelectOption();
 
-        public void GoToNextMenu()
+        internal void GoToNextMenu(byte i_SelectedOptionNumber)
         {
-            if (m_Next != null)
-            {
-                m_Current = m_Next;
-            }   
+            this.Current = this.SubMenus[i_SelectedOptionNumber - 1];
             DisplayMenuOnConsole();
         }
  
-        public void ActOnSelectedItem(MenuItem i_SelectedItem)
+        public void ActOnSelectedOption()
         {
-
-            if (i_SelectedItem.Next != null)
+            byte selectedOption = SelectOption();
+            if (this.SubMenus[selectedOption - 1] != null)
             {
-                GoToNextMenu();
+                GoToNextMenu(selectedOption);
             }
             else
             {

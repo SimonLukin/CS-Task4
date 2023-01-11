@@ -8,27 +8,32 @@ namespace Ex04.Menus.Interfaces
 {
     public class SubMenu : Menu
     {
-      
+        #region Constructor
         public SubMenu() 
         {
             this.Current = this;           
         }
-        public override void GoToPreviousMenu() 
+        #endregion
+
+        #region Methods
+        public  void GoToPreviousMenu() 
         {
-            if (this.Current != null)
+            if (this.Previous != null)
             {
                 this.Current = this.Previous;
             }
             DisplayMenuOnConsole();
         }
 
-        public override void SelectOption(byte io_OptionNumber)
+        public override byte SelectOption()
         {
-            if (io_OptionNumber == 0)
+            byte option = byte.Parse(Console.ReadLine());
+            if (option == 0)
             {
                 GoToPreviousMenu();
             }
-            SelectItem(io_OptionNumber);
+            return option;
         }
+        #endregion
     }
 }

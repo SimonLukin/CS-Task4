@@ -8,6 +8,7 @@ namespace Ex04.Menus.Interfaces
 {
     public class MainMenu : Menu
     {
+        #region Constructor
         public MainMenu() 
         {
             this.Current = this;
@@ -15,21 +16,18 @@ namespace Ex04.Menus.Interfaces
             this.MenuIndex = 0;
             this.Previous = null;
         }
-        public override void GoToPreviousMenu() // There is no previous menu to the main menu
-        {
-            ExitMenu();
-        }
+        #endregion
 
-        public override void SelectOption(byte io_OptionNumber)
+        #region Methods
+ 
+        public override byte SelectOption()
         {
-            if (io_OptionNumber == 0)
+            byte option = byte.Parse(Console.ReadLine());
+            if (option == 0)
             {
                 ExitMenu();
             }
-            else
-            {
-                SelectItem(io_OptionNumber);
-            }
+            return option;           
         }
 
         public void ExitMenu()
@@ -37,9 +35,10 @@ namespace Ex04.Menus.Interfaces
             Environment.Exit(0);
         }
 
-        public void show()
+        public void show() // Show the menu to the user
         {
 
         }
+        #endregion
     }
 }
