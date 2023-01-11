@@ -8,8 +8,22 @@ namespace Ex04.Menus.Interfaces
 {
     public class MenuItem
     {
+        private MenuItem m_Current;
+        private MenuItem m_Previous;
         private string m_Name;
         private byte m_Index;
+
+        public MenuItem Current
+        {
+            get => m_Current;
+            set => m_Current = value;
+        }
+
+        public MenuItem Previous
+        {
+            get => m_Previous;
+            set => m_Previous = value;
+        }
 
         public string Name
         {
@@ -20,7 +34,12 @@ namespace Ex04.Menus.Interfaces
         public byte Index
         {
             get => m_Index;
-            set=> m_Index = value;
+            set => m_Index = value;
+        }
+
+        public MenuItem()
+        {
+            this.Current = this;
         }
     }
 }
